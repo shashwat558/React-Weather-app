@@ -3,9 +3,11 @@ import './App.css'
 import React, { useEffect, useState } from 'react'
 
 
+
 function App() {
-  const [weather, setWeather] = useState({});
+  const [weather, setWeather] = useState(null);
   const [location, setLocation] = useState("Jamnagar");
+  const weatherStatus = weather?.weather[0]?.main;
 
   useEffect(() => {
     ifClicked()
@@ -55,13 +57,38 @@ function App() {
           </div>
           <div className='app_data'>
             <p className='temp'>Current Temprature: {weather?.main?.temp}</p>
-            <p> {weather?.weather[0]?.main}</p>
+            <h1> {weatherStatus}</h1>
+            <div className='weatherImage'>
+             <WeatherImage />
+            </div>
           </div>
         
         </div>
         </div>           
     </section>
   )
+  function WeatherImage(weather){
+    if(weatherStatus == "Clear"){
+      return <img src="src/assets/here/animated/day.svg" alt="" />
+    } else if(weatherStatus == "Rainy"){
+      return <img src="src/assets/here/animated/rainy-5.svg" alt="" />
+    } else if(weatherStatus == "Clouds"){
+      return <img src="src/assets/here/animated/cloudy.svg" alt="" />
+  
+    }  else if(weatherStatus == "fog"){
+      return <img src="src/assets/here/animated/snowy-4.svg" alt="" />
+    }  else if(weatherStatus == "Haze"){
+      return <img src="src/assets/here/animated/cloud-svgrepo-com.svg" alt="" />
+       
+    } else if(weatherStatus == "Smoke"){
+      return <img src="src/assets/here/animated/icons8-smoke-50.png" alt="" />
+       
+  }
+  
+  }
+
+  
 }
+
 
 export default App
